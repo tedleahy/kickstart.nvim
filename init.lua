@@ -30,9 +30,23 @@ vim.g.have_nerd_font = true
 
 require 'custom.options'
 require 'custom.keymaps'
-require 'custom.autocmds'
 
+-- Load autocmds
 --  See `:help lua-guide-autocommands`
+local autocmd_dir = vim.fn.stdpath 'config' .. '/lua/custom/autocmds/'
+local autocmd_files = vim.fn.readdir(autocmd_dir)
+
+for _, file in ipairs(autocmd_files) do
+  if file ~= '.' and file ~= '..' then
+    local module_name = 'custom.autocmds.' .. file:gsub('%.lua$', '')
+    vim.cmd 'doautocmd User SourceAutocmdFile'
+    require(module_name)
+  end
+end
+
+vim.filetype.add {
+  extension = { tt2 = 'tt2html' },
+}
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
