@@ -21,10 +21,26 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- This switches to the previous buffer before closing the current buffer, to preserve splits when a buffer is closed.
+vim.keymap.set('n', '<leader>x', '<cmd>bp|bd #<CR>', { desc = 'Close current buffer' })
+
+-- Split shortcuts
+vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>_', '<cmd>split<CR>', { desc = 'Horizontal split' })
+
+-- Improve navigation to work on visual lines instead of actual lines
+vim.keymap.set('n', 'j', 'gj', { noremap = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true })
+vim.keymap.set('n', '0', 'g0', { noremap = true })
+vim.keymap.set('n', '$', 'g$', { noremap = true })
+
 -- Switch buffers with Tab/Shift-Tab
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
+
+-- Copy the relative path of the file that's currently open to clipboard
+vim.keymap.set('n', '<leader>y', '<cmd>let @+=@%<CR>', { desc = 'Copy file path to clipboard' })
 
 -- Smart Tab - use tabs for indentation, spaces for alignment
 -- local function smart_tab()
