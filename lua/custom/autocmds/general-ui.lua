@@ -9,13 +9,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Configure tabs for perl files
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = 'perl',
-  callback = function()
-    vim.opt_local.expandtab = false
-    vim.opt_local.softtabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.tabstop = 4
-  end,
+-- Return cursor to the same position when reopening a file
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  group = vim.api.nvim_create_augroup('userconfig', { clear = true }),
+  desc = 'return cursor to where it was last time closing the file',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
 })
