@@ -28,9 +28,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-require 'custom.options'
-require 'custom.keymaps'
-
 -- Load autocmds
 --  See `:help lua-guide-autocommands`
 local autocmd_dir = vim.fn.stdpath 'config' .. '/lua/custom/autocmds/'
@@ -140,6 +137,9 @@ require('lazy').setup({
     },
   },
 })
+
+require 'custom.options'
+require 'custom.keymaps'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
